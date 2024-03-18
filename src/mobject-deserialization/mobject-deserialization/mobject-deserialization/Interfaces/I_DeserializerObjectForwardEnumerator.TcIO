@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_DeserializerObjectForwardEnumerator" Id="{e7c955a7-2970-0b7e-166a-b0da059af6ce}">
+    <Declaration><![CDATA[INTERFACE I_DeserializerObjectForwardEnumerator EXTENDS I_Disposable
+]]></Declaration>
+    <Property Name="Current" Id="{653422f8-c101-0e77-0e09-8e5e6e9f092b}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Current : I_Deserializer]]></Declaration>
+      <Get Name="Get" Id="{711fe33b-09fe-0eab-33ca-529e23f3dafa}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="IsValid" Id="{4ddd6a3b-518d-08bb-2e51-bc08f09ac266}">
+      <Declaration><![CDATA[PROPERTY IsValid : BOOL]]></Declaration>
+      <Get Name="Get" Id="{b7b2f816-5331-0bbe-2210-1c0b76a1a7cb}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="Key" Id="{bb052cff-9bd5-02ab-149e-61ee39b2aef3}">
+      <Declaration><![CDATA[PROPERTY Key : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{5d023078-ac51-00b5-3a45-d0d2ef14e7b8}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="MoveNext" Id="{e81ada67-cbb4-04ce-0f2e-f070b7cade7a}">
+      <Declaration><![CDATA[METHOD MoveNext : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="DeserializerGarbageCollector_TestSuite" Id="{5c1b502e-8c5a-0977-1832-83cbd83f5a96}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK DeserializerGarbageCollector_TestSuite EXTENDS TcUnit.FB_TestSuite]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TestRegister();
+TestExecute();
+TestDeregister();]]></ST>
+    </Implementation>
+    <Method Name="TestDeregister" Id="{4c7abe54-ebbd-0614-0e32-1c9671dc368d}">
+      <Declaration><![CDATA[METHOD PUBLIC TestDeregister
+VAR
+	deserializerGarbageCollector : DeserializerGarbageCollector;
+	mockDisposableDeserializer : MockDisposableDeserializer;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestDeregister');
+
+deserializerGarbageCollector.Register(mockDisposableDeserializer);
+deserializerGarbageCollector.Deregister(mockDisposableDeserializer);
+deserializerGarbageCollector.Execute();
+
+AssertFalse(
+	Condition := mockDisposableDeserializer.IsDisposed,
+	Message := 'Did not deregister the deserializer, which resulted in it disposing.'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestExecute" Id="{28f2f5a5-c536-0c12-36a3-cbae763d201e}">
+      <Declaration><![CDATA[METHOD PUBLIC TestExecute
+VAR
+	deserializerGarbageCollector : DeserializerGarbageCollector;
+	mockDisposableDeserializer : MockDisposableDeserializer;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestExecute');
+
+deserializerGarbageCollector.Register(mockDisposableDeserializer);
+deserializerGarbageCollector.Execute();
+
+AssertTrue(
+	Condition := mockDisposableDeserializer.IsDisposed,
+	Message := 'Did not dispose of the registered Deserializer'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestRegister" Id="{0446081a-c175-097d-227d-525d61b652b7}">
+      <Declaration><![CDATA[METHOD PUBLIC TestRegister
+VAR
+	deserializerGarbageCollector : DeserializerGarbageCollector;
+	mockDisposableDeserializer : MockDisposableDeserializer;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestRegister');
+
+deserializerGarbageCollector.Register(mockDisposableDeserializer);
+deserializerGarbageCollector.Execute();
+
+AssertTrue(
+	Condition := mockDisposableDeserializer.IsDisposed,
+	Message := 'Did not register the deserializer'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Deserializable" Id="{304c5669-cf3c-09f7-0c3a-89b35734a234}">
+    <Declaration><![CDATA[INTERFACE I_Deserializable EXTENDS __SYSTEM.IQueryInterface]]></Declaration>
+    <Method Name="TryDeserializeFrom" Id="{33ef4acc-db66-0b4b-21c5-3d5be6a2e887}">
+      <Declaration><![CDATA[METHOD TryDeserializeFrom : BOOL
+VAR_INPUT
+	Deserializer : I_Deserializer;
+	Feedback : I_ErrorLogger;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
