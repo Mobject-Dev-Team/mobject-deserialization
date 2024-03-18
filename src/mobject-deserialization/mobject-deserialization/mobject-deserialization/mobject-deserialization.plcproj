@@ -67,7 +67,7 @@
     <Folder Include="Errors" />
     <Folder Include="Errors\Missing Key" />
     <Folder Include="Errors\Invalid Key" />
-    <Folder Include="Errors\IncorrectTypeDeserializationError" />
+    <Folder Include="Errors\IncorrectType" />
     <Folder Include="GarbageCollector" />
     <Folder Include="Interfaces" />
   </ItemGroup>
@@ -78,10 +78,10 @@
     <Compile Include="Errors\DeserializationErrorFactory.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Errors\IncorrectTypeDeserializationError\IncorrectTypeDeserializationError.TcPOU">
+    <Compile Include="Errors\IncorrectType\IncorrectTypeDeserializationError.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Errors\IncorrectTypeDeserializationError\IncorrectKeyTypeDeserializationError.TcPOU">
+    <Compile Include="Errors\IncorrectType\IncorrectKeyTypeDeserializationError.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Errors\Missing Key\MissingKeyDeserializationError.TcPOU">
