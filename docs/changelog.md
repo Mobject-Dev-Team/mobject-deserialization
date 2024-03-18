@@ -5,6 +5,7 @@
 - Initial deserializer code taken from v0.3.0
 - Added I_DeserializerObjectForwardEnumerator
 - Added I_DeserializerArrayForwardEnumerator
+- Added DeserializerFeedback and I_DeserializerFeedback
 
 !> This update contains the following breaking changes to the code taken from mobject-serialization v0.3.0.
 
@@ -13,6 +14,6 @@
   - GetObjectEnumerator
   - GetObject
 - Renamed the GetKey to GetKeyObject
-- TryDeserializeFrom now uses an I_ErrorLogger to report back a reason if it fails
+- TryDeserializeFrom now uses an I_DeserializerFeedback to report back a reason if it fails
 - Renamed TryGetObject to TryDeserializeToObject
 - Renamed TryGetKeyObject to TryDeserializeKeyToObject

@@ -52,11 +52,18 @@
     <LibraryReference Include="mobject-disposable,1.0.0,mobject">
       <Namespace>mobject_disposable</Namespace>
     </LibraryReference>
+    <LibraryReference Include="mobject-enumerable,1.1.0,mobject">
+      <Namespace>mobject_enumerable</Namespace>
+    </LibraryReference>
     <LibraryReference Include="mobject-errors,0.2.0,mobject">
       <Namespace>mobject_errors</Namespace>
     </LibraryReference>
+    <LibraryReference Include="mobject-serialization,0.4.0,mobject">
+      <Namespace>mobject_serialization</Namespace>
+    </LibraryReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DeserializationFeedback" />
     <Folder Include="Errors" />
     <Folder Include="Errors\Missing Key" />
     <Folder Include="Errors\Invalid Key" />
@@ -65,6 +72,9 @@
     <Folder Include="Interfaces" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeserializationFeedback\DeserializerFeedback.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Errors\DeserializationErrorFactory.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -96,6 +106,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Interfaces\I_DeserializerObjectForwardEnumerator.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\I_DeserializerFeedback.TcIO">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
