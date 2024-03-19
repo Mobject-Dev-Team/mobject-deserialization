@@ -6,6 +6,7 @@
 - Added I_DeserializerObjectForwardEnumerator
 - Added I_DeserializerArrayForwardEnumerator
 - Added DeserializerFeedback and I_DeserializerFeedback
+- Added I_DeserializerFeedbackVisitor
 
 !> This update contains the following breaking changes to the code taken from mobject-serialization v0.3.0.
 

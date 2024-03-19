@@ -99,7 +99,7 @@ END_VAR
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Object : I_Deserializable;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -109,7 +109,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryDeserializeToObject : BOOL
 VAR_INPUT
 	Object : I_Deserializable;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -120,7 +120,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	pBytes : POINTER TO BYTE;
 	nBytes : DINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -130,7 +130,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetBool : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO BOOL;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -140,7 +140,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetByte : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO BYTE;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -150,7 +150,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetDateTime : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO DATE_AND_TIME;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -160,7 +160,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetDcTime : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO DCTIME;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -170,7 +170,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetDint : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO DINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -180,7 +180,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetDword : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO DWORD;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -190,7 +190,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetFileTime : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO FILETIME;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -201,7 +201,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	pBytes : POINTER TO BYTE;
 	nBytes : DINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -212,7 +212,7 @@ END_VAR
       <Declaration><![CDATA[METHOD TryGetInt : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO INT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -224,7 +224,7 @@ VAR_INPUT
 	Key : T_MAXSTRING;
 	pBytes : POINTER TO BYTE;
 	nBytes : DINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -235,7 +235,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO BOOL;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -246,7 +246,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO BYTE;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -257,7 +257,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO DATE_AND_TIME;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -268,7 +268,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO DCTIME;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -279,7 +279,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO DINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -290,7 +290,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO DWORD;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -301,7 +301,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO FILETIME;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -313,7 +313,7 @@ VAR_INPUT
 	Key : T_MAXSTRING;
 	pBytes : POINTER TO BYTE;
 	nBytes : DINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -324,7 +324,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO INT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -335,7 +335,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO LINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -346,7 +346,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO LREAL;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -358,7 +358,7 @@ END_VAR
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO LTIME;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -370,7 +370,7 @@ END_VAR
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO LWORD;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -381,7 +381,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO REAL;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -392,7 +392,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO SINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -403,7 +403,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO STRING;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -414,7 +414,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO TIME;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -425,7 +425,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO TOD;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -437,7 +437,7 @@ END_VAR
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO UDINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -448,7 +448,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO UINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -459,7 +459,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO ULINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -470,7 +470,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO USINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -481,7 +481,7 @@ END_VAR]]></Declaration>
 VAR_INPUT
 	Key : T_MAXSTRING;
 	Destination : REFERENCE TO WORD;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -491,7 +491,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetLint : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO LINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -501,7 +501,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetLreal : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO LREAL;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -511,7 +511,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetLtime : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO LTIME;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -521,7 +521,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetLword : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO LWORD;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -532,7 +532,7 @@ END_VAR
       <Declaration><![CDATA[METHOD TryGetReal : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO REAL;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -542,7 +542,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetSint : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO SINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -552,7 +552,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetString : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO STRING;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -562,7 +562,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetTime : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO TIME;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -572,7 +572,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetTod : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO TOD;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -582,7 +582,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetUdint : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO UDINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -592,7 +592,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetUint : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO UINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -602,7 +602,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetUlint : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO ULINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -612,7 +612,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetUsint : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO USINT;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -622,7 +622,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD TryGetWord : BOOL
 VAR_INPUT
 	Destination : REFERENCE TO WORD;
-	Feedback : I_ErrorLogger;
+	Feedback : I_DeserializerFeedback;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>

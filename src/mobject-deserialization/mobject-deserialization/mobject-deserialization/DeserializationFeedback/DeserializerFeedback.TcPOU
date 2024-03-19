@@ -8,6 +8,7 @@ FUNCTION_BLOCK DeserializerFeedback IMPLEMENTS I_DeserializerFeedback
 VAR
 	errors : Stack;
 	_hasError : BOOL;
+	nullError : NullError;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -15,6 +16,16 @@ END_VAR
     </Implementation>
     <Folder Name="Destructor" Id="{bf8288b5-a589-07f1-35d4-59841682861e}" />
     <Folder Name="Private" Id="{cbf1d272-4fa4-03b9-3cb3-10553853ba10}" />
+    <Method Name="Accept" Id="{09ea587c-0fe0-46f0-827b-2c9633ee6512}">
+      <Declaration><![CDATA[METHOD PUBLIC Accept
+VAR_INPUT
+	Visitor : I_DeserializerFeedbackVisitor;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Visitor.VisitDeserializerFeedback(THIS^);
+VisitErrors(Visitor);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="DisposeErrors" Id="{248b7186-74cd-01b9-273e-46d8064a620f}" FolderPath="Private\">
       <Declaration><![CDATA[METHOD PRIVATE DisposeErrors : BOOL
 VAR
@@ -41,6 +52,28 @@ END_IF
 DisposeErrors();]]></ST>
       </Implementation>
     </Method>
+    <Property Name="FirstError" Id="{51d64554-ca38-0cb7-0c52-30b0cce12708}">
+      <Declaration><![CDATA[PROPERTY PUBLIC FirstError : I_Error]]></Declaration>
+      <Get Name="Get" Id="{6c1860f6-35f5-0a7e-3259-3093ed9a2296}">
+        <Declaration><![CDATA[VAR
+	error : I_Error;
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IF NOT HasError THEN
+	FirstError := nullError;
+	RETURN;
+END_IF
+
+IF NOT errors.TryPeek(error) THEN
+	FirstError := nullError;
+	RETURN;
+END_IF
+
+FirstError := error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="HasError" Id="{e708940b-3197-0b0b-1959-baf7df63f3a6}">
       <Declaration><![CDATA[PROPERTY PUBLIC HasError : BOOL]]></Declaration>
       <Get Name="Get" Id="{12d8fcd3-ea42-0ba4-0d9e-a64351b0f1f2}">
@@ -100,6 +133,29 @@ END_WHILE
 
 enumerator.Dispose();
 Serializer.EndArray();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="VisitErrors" Id="{43bca35e-b3f4-0b08-3b87-3d9da29e7995}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE VisitErrors
+VAR_INPUT
+	Visitor : I_ErrorVisitor;
+END_VAR
+VAR
+	enumerator : I_ForwardEnumerator;
+	error : I_Error;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[enumerator := errors.GetEnumerator();
+
+WHILE (enumerator.MoveNext()) DO
+	
+	IF enumerator.TryGet(error) THEN
+		error.Accept(Visitor);
+	END_IF
+
+END_WHILE
+
+enumerator.Dispose();]]></ST>
       </Implementation>
     </Method>
   </POU>
