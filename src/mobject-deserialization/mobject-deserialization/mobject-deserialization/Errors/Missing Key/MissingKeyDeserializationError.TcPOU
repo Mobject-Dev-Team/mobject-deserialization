@@ -33,7 +33,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[key := Key;]]></ST>
+        <ST><![CDATA[this^.key := Key;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Message" Id="{a0dfb461-74a4-0624-33f6-57ad0c459b78}">
@@ -43,7 +43,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Message := CONCAT('Deserialization Faild, Missing Key : ',key);]]></ST>
+          <ST><![CDATA[Message := CONCAT('Deserialization Failed, Missing Key : ',key);]]></ST>
         </Implementation>
       </Get>
     </Property>

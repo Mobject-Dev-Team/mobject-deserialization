@@ -29,7 +29,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Message := 'Deserialization Faild, Key Cannot Be Empty';]]></ST>
+          <ST><![CDATA[Message := 'Deserialization Failed, Key Cannot Be Empty';]]></ST>
         </Implementation>
       </Get>
     </Property>

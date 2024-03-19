@@ -33,7 +33,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[dataType := DataType;]]></ST>
+        <ST><![CDATA[THIS^.dataType := DataType;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Message" Id="{8f377fc1-f2f7-0c33-0568-e1ddd548eca5}">
@@ -43,7 +43,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Message := CONCAT('Deserialization Faild, Incorrect Datatype : ', dataType);]]></ST>
+          <ST><![CDATA[Message := CONCAT('Deserialization Failed, Incorrect Datatype : ', dataType);]]></ST>
         </Implementation>
       </Get>
     </Property>

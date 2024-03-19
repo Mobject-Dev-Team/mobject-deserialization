@@ -23,7 +23,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[key := Key;]]></ST>
+        <ST><![CDATA[THIS^.key := Key;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Message" Id="{bc4eb468-374f-035a-1403-7b1a2da69cb1}">
