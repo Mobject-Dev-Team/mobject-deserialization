@@ -18,6 +18,6 @@ A sprinkling of OOP is usually enough to simplify and unclutter procedural code.
 
 mobject's goal is to be a lightweight solution to typical oop problems.
 
-## Why use mobject-serialization?
+## Why use mobject-deserialization?
 
 The mobject-deserialization library provides a consistent way to handle the deserialization of objects in an industrial control system. It includes a set of common interfaces, allowing you to create your own deserialization type, or to deserialize objects to the included format JSON.
