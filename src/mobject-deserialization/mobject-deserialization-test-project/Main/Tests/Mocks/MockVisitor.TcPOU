@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MockVisitor" Id="{b7a25753-242f-08d1-27c6-b89068734189}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MockVisitor IMPLEMENTS I_ErrorVisitor
+VAR
+	expectedError : I_Error;
+	errorVisited : I_Error;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{7abc7626-e1f7-07dd-0ac2-a168d804ddf7}" />
+    <Method Name="FB_init" Id="{27e17798-9c04-0530-3cc3-e7fa0c6aecbe}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	ExpectedError : I_Error;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[this^.expectedError := ExpectedError;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="VisitedCorrectError" Id="{3ebfc91a-9063-0076-21f1-7e261c18c1c0}">
+      <Declaration><![CDATA[PROPERTY PUBLIC VisitedCorrectError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{9d7de73b-a60a-0fea-178b-490cf3730fde}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[VisitedCorrectError := ExpectedError = errorVisited;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="VisitError" Id="{5687bc2d-f464-0f60-3bda-f5de7c11e5fd}">
+      <Declaration><![CDATA[METHOD VisitError
+VAR_INPUT
+	VisitingError : I_Error;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[errorVisited := VisitingError;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

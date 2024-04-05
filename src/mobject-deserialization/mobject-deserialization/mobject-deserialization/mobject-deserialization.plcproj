@@ -105,9 +105,6 @@
     <Compile Include="Interfaces\I_DeserializerArrayForwardEnumerator.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Interfaces\I_DeserializerFeedbackVisitor.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Interfaces\I_DeserializerObjectForwardEnumerator.TcIO">
       <SubType>Code</SubType>
     </Compile>

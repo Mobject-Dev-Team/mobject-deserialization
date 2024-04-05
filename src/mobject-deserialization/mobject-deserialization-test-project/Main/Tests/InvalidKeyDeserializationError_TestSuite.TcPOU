@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="InvalidKeyDeserializationError_TestSuite" Id="{cdadf2cf-6e28-4ab5-a6d9-5dd0516396bd}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK InvalidKeyDeserializationError_TestSuite EXTENDS TcUnit.FB_TestSuite]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TestAccept();
+TestErrorType();
+TestIsSameAsWithSameErrors();
+TestIsSameAsWithDifferentErrors();
+TestMessage();
+TestSerializeWith();]]></ST>
+    </Implementation>
+    <Method Name="TestAccept" Id="{06ed943b-1963-47a2-9927-62d5f9c97d3b}">
+      <Declaration><![CDATA[METHOD PUBLIC TestAccept
+VAR
+	error : InvalidKeyDeserializationError;
+	visitor : MockVisitor(ExpectedError := error);
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestAccept');
+
+error.Accept(visitor);
+
+AssertTrue(
+	Condition := visitor.VisitedCorrectError,
+	Message := 'Did not invoke VisitError on the visitor'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestErrorType" Id="{4aa14b79-957d-4657-b462-dbc74c523ef1}">
+      <Declaration><![CDATA[METHOD PUBLIC TestErrorType
+VAR
+	error : InvalidKeyDeserializationError;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestErrorType');
+
+AssertEquals_String(
+	Actual := error.ErrorType,
+	Expected := 'INVALID_KEY_DESERIALIZATION_ERROR',
+	Message := 'Did not return the expected ErrorType'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestIsSameAsWithDifferentErrors" Id="{06e355ac-dc98-42da-bb4f-b6aba80bfab2}">
+      <Declaration><![CDATA[METHOD PUBLIC TestIsSameAsWithDifferentErrors
+VAR
+	error1 : InvalidKeyDeserializationError;
+	error2 : MockError(MockErrorType:='ERROR_TYPE_B',MockMessage:='Message 2');
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestIsSameAsWithDifferentErrors');
+
+AssertFalse(
+	Condition := error1.IsSameAs(error2),
+	Message := 'Did not correctly identify errors as being different type'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestIsSameAsWithSameErrors" Id="{6eceef2b-8145-4fb9-be32-0da8fd95de5f}">
+      <Declaration><![CDATA[METHOD PUBLIC TestIsSameAsWithSameErrors
+VAR
+	error1 : InvalidKeyDeserializationError;
+	error2 : MockError(MockErrorType:='INVALID_KEY_DESERIALIZATION_ERROR',MockMessage:='Message');
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestIsSameAsWithSameErrors');
+
+AssertTrue(
+	Condition := error1.IsSameAs(error2),
+	Message := 'Did not correctly identify errors as being the same type'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestMessage" Id="{4d1ad10b-5cec-40b9-9277-6ed38d94b183}">
+      <Declaration><![CDATA[METHOD PUBLIC TestMessage
+VAR
+	error : InvalidKeyDeserializationError;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestMessage');
+
+AssertEquals_String(
+	Actual := error.Message,
+	Expected := 'Deserialization Failed, Key Cannot Be Empty',
+	Message := 'Did not return the expected Message'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestSerializeWith" Id="{492f316e-7243-4203-9d49-40dd6962ce17}">
+      <Declaration><![CDATA[METHOD PUBLIC TestSerializeWith
+VAR
+	error : InvalidKeyDeserializationError;
+	serializer : JsonSerializer;
+	result : T_MAXSTRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestSerializeWith');
+
+error.SerializeWith(serializer);
+serializer.TryGetSerializedData(ADR(result), SIZEOF(result));
+
+AssertEquals_String(
+	Actual := result,
+	Expected := '{"errorType":"INVALID_KEY_DESERIALIZATION_ERROR","message":"Deserialization Failed, Key Cannot Be Empty"}',
+	Message := 'Did not serialize correctly'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

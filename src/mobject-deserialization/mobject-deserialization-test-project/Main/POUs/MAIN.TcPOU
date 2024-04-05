@@ -4,6 +4,11 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	deserializerGarbageCollector_TestSuite : DeserializerGarbageCollector_TestSuite;
+	missingKeyDeserializationError_TestSuite :MissingKeyDeserializationError_TestSuite;
+	invalidKeyDeserializationError_TestSuite : InvalidKeyDeserializationError_TestSuite;
+	incorrectTypeDeserializationError_TestSuite : IncorrectTypeDeserializationError_TestSuite;
+	incorrectKeyTypeDeserializationError_TestSuite : IncorrectKeyTypeDeserializationError_TestSuite;
+	deserializationErrorFactory_TestSuite : DeserializationErrorFactory_TestSuite;
 END_VAR
 ]]></Declaration>
     <Implementation>
