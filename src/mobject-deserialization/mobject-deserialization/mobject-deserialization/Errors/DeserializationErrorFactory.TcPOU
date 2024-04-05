@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="DeserializationErrorFactory" Id="{e8618a64-606d-0d43-3f62-69b06ec95a61}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK DeserializationErrorFactory
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CreateIncorrectKeyTypeError" Id="{e91f5f9e-8e5a-0143-2576-846baa7ec39d}">
+      <Declaration><![CDATA[METHOD PUBLIC CreateIncorrectKeyTypeError : I_Error
+VAR_INPUT
+	ExpectedType : T_MAXSTRING;
+	ActualKey : T_MAXSTRING;
+END_VAR
+VAR
+	pError : POINTER TO IncorrectKeyTypeDeserializationError;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pError := __NEW(IncorrectKeyTypeDeserializationError(DataType := ExpectedType, Key := ActualKey));
+CreateIncorrectKeyTypeError := pError^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CreateIncorrectTypeError" Id="{8d319e82-d857-0d38-0093-ea945bc82768}">
+      <Declaration><![CDATA[METHOD PUBLIC CreateIncorrectTypeError : I_Error
+VAR_INPUT
+	ExpectedType : T_MAXSTRING;
+END_VAR
+VAR
+	pError : POINTER TO IncorrectTypeDeserializationError;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pError := __NEW(IncorrectTypeDeserializationError(DataType := ExpectedType));
+CreateIncorrectTypeError := pError^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CreateInvalidKeyError" Id="{06ca5caf-59fb-072f-0f12-fd33d6f5b353}">
+      <Declaration><![CDATA[METHOD PUBLIC CreateInvalidKeyError : I_Error
+VAR_INPUT
+END_VAR
+VAR
+	pError : POINTER TO InvalidKeyDeserializationError;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pError := __NEW(InvalidKeyDeserializationError);
+CreateInvalidKeyError := pError^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CreateMissingKeyError" Id="{66354f17-4254-0046-19ae-faf8457608d0}">
+      <Declaration><![CDATA[METHOD PUBLIC CreateMissingKeyError : I_Error
+VAR_INPUT
+	ExpectedKey : T_MAXSTRING;
+END_VAR
+VAR
+	pError : POINTER TO MissingKeyDeserializationError;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pError := __NEW(MissingKeyDeserializationError(Key := ExpectedKey));
+CreateMissingKeyError := pError^;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

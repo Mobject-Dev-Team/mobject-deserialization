@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_DeserializerGarbageCollector" Id="{96cbc3e7-18e3-08a9-111c-059e676ada37}">
+    <Declaration><![CDATA[INTERFACE I_DeserializerGarbageCollector EXTENDS __SYSTEM.IQueryInterface
+]]></Declaration>
+    <Method Name="Deregister" Id="{129de3c7-4588-0a99-20f6-de3cdaed11d2}">
+      <Declaration><![CDATA[METHOD PUBLIC Deregister
+VAR_INPUT
+	Deserializer : I_Deserializer;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Register" Id="{a738afd4-1eb0-0b4e-3edd-aee5fea0a4ff}">
+      <Declaration><![CDATA[METHOD PUBLIC Register
+VAR_INPUT
+	Deserializer : I_Deserializer;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

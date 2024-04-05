@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MissingKeyDeserializationError" Id="{d3b77a75-7d03-07f7-3f6b-fbf0d8df4494}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK MissingKeyDeserializationError EXTENDS Error
+VAR
+	key : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{d1b46399-43b6-0068-1de8-1b33f7bd7215}" />
+    <Property Name="ErrorType" Id="{2f2d49a4-ff1b-0c7c-14f3-7e1e3ea7ac2a}">
+      <Declaration><![CDATA[PROPERTY PUBLIC ErrorType : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{786d6982-80ec-01b9-3cea-900316796c5f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ErrorType := 'MISSING_KEY_DESERIALIZATION_ERROR';]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="FB_init" Id="{4b2740f1-f293-03ae-03ef-b968c84e15fb}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	Key : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[this^.key := Key;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Message" Id="{a0dfb461-74a4-0624-33f6-57ad0c459b78}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Message : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{ca711d51-70ee-07e2-0aa6-7a801ba64daf}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Message := CONCAT('Deserialization Failed, Missing Key : ',key);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

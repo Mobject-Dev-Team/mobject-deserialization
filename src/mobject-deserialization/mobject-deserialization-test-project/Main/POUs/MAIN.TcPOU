@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{79e56d3f-4a2f-4165-b00a-6e29260b0b9b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	deserializerGarbageCollector_TestSuite : DeserializerGarbageCollector_TestSuite;
+	missingKeyDeserializationError_TestSuite :MissingKeyDeserializationError_TestSuite;
+	invalidKeyDeserializationError_TestSuite : InvalidKeyDeserializationError_TestSuite;
+	incorrectTypeDeserializationError_TestSuite : IncorrectTypeDeserializationError_TestSuite;
+	incorrectKeyTypeDeserializationError_TestSuite : IncorrectKeyTypeDeserializationError_TestSuite;
+	deserializationErrorFactory_TestSuite : DeserializationErrorFactory_TestSuite;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TcUnit.RUN();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

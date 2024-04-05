@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="IncorrectKeyTypeDeserializationError" Id="{46a9eae1-396b-0bc0-0e2e-ed4a628b053f}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK IncorrectKeyTypeDeserializationError EXTENDS IncorrectTypeDeserializationError
+VAR
+	key : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{fc6d4f62-05eb-02a0-3edb-d5de4fa79d06}" />
+    <Method Name="FB_init" Id="{115c560e-2b0a-0695-0707-7d6130aa4529}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	DataType : T_MAXSTRING;
+	Key : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.key := Key;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Message" Id="{bc4eb468-374f-035a-1403-7b1a2da69cb1}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Message : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{9f3e09db-faae-09e0-08a0-27769975ad2b}">
+        <Declaration><![CDATA[VAR
+	messageWithKey : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[messageWithKey := concat(' for key : ',key);
+Message := CONCAT(SUPER^.Message, messageWithKey);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

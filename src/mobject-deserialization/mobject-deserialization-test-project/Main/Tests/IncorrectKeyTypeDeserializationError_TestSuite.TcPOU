@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="IncorrectKeyTypeDeserializationError_TestSuite" Id="{63fb2d6f-5e0e-425f-ac18-9e485f994d40}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK IncorrectKeyTypeDeserializationError_TestSuite EXTENDS TcUnit.FB_TestSuite]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TestAccept();
+TestErrorType();
+TestIsSameAsWithSameErrors();
+TestIsSameAsWithDifferentErrors();
+TestMessage();
+TestSerializeWith();]]></ST>
+    </Implementation>
+    <Method Name="TestAccept" Id="{a40b9dd0-7caa-4a0d-b2bb-cc253ef72a28}">
+      <Declaration><![CDATA[METHOD PUBLIC TestAccept
+VAR
+	error : IncorrectKeyTypeDeserializationError('testType', 'testKey');
+	visitor : MockVisitor(ExpectedError := error);
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestAccept');
+
+error.Accept(visitor);
+
+AssertTrue(
+	Condition := visitor.VisitedCorrectError,
+	Message := 'Did not invoke VisitError on the visitor'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestErrorType" Id="{9f6f9ca5-1a72-41e2-a3cb-2a17598fa675}">
+      <Declaration><![CDATA[METHOD PUBLIC TestErrorType
+VAR
+	error : IncorrectKeyTypeDeserializationError('testType', 'testKey');
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestErrorType');
+
+AssertEquals_String(
+	Actual := error.ErrorType,
+	Expected := 'INCORRECT_DATATYPE_DESERIALIZATION_ERROR',
+	Message := 'Did not return the expected ErrorType'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestIsSameAsWithDifferentErrors" Id="{93e96af4-86ed-44ae-bad6-75e7c1cc2cc8}">
+      <Declaration><![CDATA[METHOD PUBLIC TestIsSameAsWithDifferentErrors
+VAR
+	error1 : IncorrectKeyTypeDeserializationError('testType', 'testKey');
+	error2 : MockError(MockErrorType:='ERROR_TYPE_B',MockMessage:='Message 2');
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestIsSameAsWithDifferentErrors');
+
+AssertFalse(
+	Condition := error1.IsSameAs(error2),
+	Message := 'Did not correctly identify errors as being different type'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestIsSameAsWithSameErrors" Id="{bdace99e-d087-400f-b39d-ff46a101c263}">
+      <Declaration><![CDATA[METHOD PUBLIC TestIsSameAsWithSameErrors
+VAR
+	error1 : IncorrectKeyTypeDeserializationError('testType', 'testKey');
+	error2 : MockError(MockErrorType:='INCORRECT_DATATYPE_DESERIALIZATION_ERROR',MockMessage:='Message');
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestIsSameAsWithSameErrors');
+
+AssertTrue(
+	Condition := error1.IsSameAs(error2),
+	Message := 'Did not correctly identify errors as being the same type'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestMessage" Id="{1d62de46-09b1-4375-9fbc-4fb10ca7ad3c}">
+      <Declaration><![CDATA[METHOD PUBLIC TestMessage
+VAR
+	error : IncorrectKeyTypeDeserializationError('testType', 'testKey');
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestMessage');
+
+AssertEquals_String(
+	Actual := error.Message,
+	Expected := 'Deserialization Failed, Incorrect Datatype : testType for key : testKey',
+	Message := 'Did not return the expected Message'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestSerializeWith" Id="{79f45746-b95b-4594-809e-0cf00a42faa8}">
+      <Declaration><![CDATA[METHOD PUBLIC TestSerializeWith
+VAR
+	error : IncorrectKeyTypeDeserializationError('testType', 'testKey');
+	serializer : JsonSerializer;
+	result : T_MAXSTRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestSerializeWith');
+
+error.SerializeWith(serializer);
+serializer.TryGetSerializedData(ADR(result), SIZEOF(result));
+
+AssertEquals_String(
+	Actual := result,
+	Expected := '{"errorType":"INCORRECT_DATATYPE_DESERIALIZATION_ERROR","message":"Deserialization Failed, Incorrect Datatype : testType for key : testKey"}',
+	Message := 'Did not serialize correctly'
+);
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
