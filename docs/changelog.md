@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.0-alpha
+
+- Added support for mobject-collections v1.2.0
+
 ## v0.1.0-alpha
 
 - Initial deserializer code taken from v0.3.0

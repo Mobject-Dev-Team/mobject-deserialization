@@ -76,7 +76,7 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="mobject-deserialization,0.1.0,mobject">
+    <LibraryReference Include="mobject-deserialization,0.2.0,mobject">
       <Namespace>mobject_deserialization</Namespace>
     </LibraryReference>
     <LibraryReference Include="mobject-errors,0.2.0,mobject">
