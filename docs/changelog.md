@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.3.0-alpha
+
+- Integrated deserialization errors in to deserialization feedback
+- Added custom deserialization error
+- Added support for mobject-collections v1.3.0
+- Added support for mobject-disposable v1.1.1
+- Added support for mobject-enumerable v1.2.0
+- Added support for mobject-errors v0.3.0
+- Added support for mobject-serialization v0.5.0
+- Removed mobject-json from tests and replaced with MockJsonSeralizer
+
 ## v0.2.0-alpha
 
 - Added support for mobject-collections v1.2.0
