@@ -3,11 +3,40 @@
   <POU Name="DeserializationErrorFactory_TestSuite" Id="{7b79ae16-928f-4457-901a-acc38e140e45}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK DeserializationErrorFactory_TestSuite EXTENDS TcUnit.FB_TestSuite]]></Declaration>
     <Implementation>
-      <ST><![CDATA[TestCreateIncorrectKeyTypeError();
+      <ST><![CDATA[TestCreateICustomDeserializationFailedError();
+TestCreateIncorrectKeyTypeError();
 TestCreateIncorrectTypeError();
 TestCreateMissingKeyError();
 TestCreateInvalidKeyError();]]></ST>
     </Implementation>
+    <Method Name="TestCreateICustomDeserializationFailedError" Id="{d1bb8acc-7f87-0a23-05ce-525a905e0def}">
+      <Declaration><![CDATA[METHOD PUBLIC TestCreateICustomDeserializationFailedError
+VAR
+	error : CustomDeserializationFailedError('testMessage');
+	factory : DeserializationErrorFactory;
+	newError : I_Error;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestCreateICustomDeserializationFailedError');
+
+newError := factory.CreateCustomDeserializationFailedError('testMessage');
+
+AssertTrue(
+	Condition := newError.IsSameAs(error),
+	Message := 'Did not produce the correct error type'
+);
+
+AssertEquals_String(
+	Actual := newError.Message,
+	Expected := error.Message,
+	Message := 'Did not produce error with correct message'
+);
+
+newError.Dispose();
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="TestCreateIncorrectKeyTypeError" Id="{aadd7fdd-882e-4d73-b70b-a590bfe89472}">
       <Declaration><![CDATA[METHOD PUBLIC TestCreateIncorrectKeyTypeError
 VAR

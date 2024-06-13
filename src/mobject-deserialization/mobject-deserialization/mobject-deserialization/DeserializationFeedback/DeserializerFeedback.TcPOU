@@ -9,6 +9,7 @@ VAR
 	errors : Stack;
 	_hasError : BOOL;
 	nullError : NullError;
+	deserializationErrorFactory : DeserializationErrorFactory;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -75,6 +76,16 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="LogDeserializationFailedError" Id="{e31e8527-95e4-0485-1ab9-2602831a8170}">
+      <Declaration><![CDATA[METHOD PUBLIC LogDeserializationFailedError
+VAR_INPUT
+	Message : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[LogError(deserializationErrorFactory.CreateCustomDeserializationFailedError(Message));]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="LogError" Id="{b4cb288e-5a90-0f06-39bb-4e1208f0e8a7}">
       <Declaration><![CDATA[METHOD PUBLIC LogError
 VAR_INPUT
@@ -84,6 +95,46 @@ END_VAR
       <Implementation>
         <ST><![CDATA[errors.Push(Error);
 _hasError := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LogIncorrectKeyTypeError" Id="{d07065b8-5d1f-0c80-2688-b664ebf2b68d}">
+      <Declaration><![CDATA[METHOD PUBLIC LogIncorrectKeyTypeError
+VAR_INPUT
+	ExpectedType : T_MAXSTRING;
+	ActualKey : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[LogError(deserializationErrorFactory.CreateIncorrectKeyTypeError(ExpectedType, ActualKey));]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LogIncorrectTypeError" Id="{6ecbfe6e-5ff1-02a9-0365-d5b1cff19663}">
+      <Declaration><![CDATA[METHOD PUBLIC LogIncorrectTypeError
+VAR_INPUT
+	ExpectedType : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[LogError(deserializationErrorFactory.CreateIncorrectTypeError(ExpectedType));]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LogInvalidKeyError" Id="{8eb3ae14-33b0-06f1-355e-9e8851ce25cb}">
+      <Declaration><![CDATA[METHOD PUBLIC LogInvalidKeyError
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[LogError(deserializationErrorFactory.CreateInvalidKeyError());]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LogMissingKeyError" Id="{cb5b362d-6529-07f2-2c55-3a2c44c01822}">
+      <Declaration><![CDATA[METHOD PUBLIC LogMissingKeyError
+VAR_INPUT
+	ExpectedKey : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[LogError(deserializationErrorFactory.CreateMissingKeyError(ExpectedKey));]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{fbb72e83-2181-0d05-3dcf-93c9b065d657}">

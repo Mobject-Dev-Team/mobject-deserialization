@@ -101,7 +101,7 @@ TEST_FINISHED();]]></ST>
       <Declaration><![CDATA[METHOD PUBLIC TestSerializeWith
 VAR
 	error : InvalidKeyDeserializationError;
-	serializer : JsonSerializer;
+	serializer : MockJsonSerializer;
 	result : T_MAXSTRING;
 END_VAR]]></Declaration>
       <Implementation>

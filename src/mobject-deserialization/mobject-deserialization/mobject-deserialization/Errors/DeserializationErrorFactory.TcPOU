@@ -11,6 +11,20 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Method Name="CreateCustomDeserializationFailedError" Id="{aea12347-eca0-03df-1cd7-e5d35065916c}">
+      <Declaration><![CDATA[METHOD PUBLIC CreateCustomDeserializationFailedError : I_Error
+VAR_INPUT
+	CustomMessage : T_MAXSTRING;
+END_VAR
+VAR
+	pError : POINTER TO CustomDeserializationFailedError;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pError := __NEW(CustomDeserializationFailedError(Message := CustomMessage));
+CreateCustomDeserializationFailedError := pError^;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="CreateIncorrectKeyTypeError" Id="{e91f5f9e-8e5a-0143-2576-846baa7ec39d}">
       <Declaration><![CDATA[METHOD PUBLIC CreateIncorrectKeyTypeError : I_Error
 VAR_INPUT

@@ -3,10 +3,45 @@
   <Itf Name="I_DeserializerFeedback" Id="{3e85d5fa-0e05-0fac-2c00-bb2a66f70d26}">
     <Declaration><![CDATA[INTERFACE I_DeserializerFeedback
 ]]></Declaration>
+    <Method Name="LogDeserializationFailedError" Id="{4b86c0a3-0378-011b-12ac-7b3b28d37564}">
+      <Declaration><![CDATA[METHOD PUBLIC LogDeserializationFailedError
+VAR_INPUT
+	Message : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="LogError" Id="{e5df8d5d-8a75-02cf-2818-217cc9cd3782}">
       <Declaration><![CDATA[METHOD PUBLIC LogError
 VAR_INPUT
 	Error : I_Error;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="LogIncorrectKeyTypeError" Id="{c9ff1e62-353d-0363-0f63-b6c5c8676778}">
+      <Declaration><![CDATA[METHOD PUBLIC LogIncorrectKeyTypeError
+VAR_INPUT
+	ExpectedType : T_MAXSTRING;
+	ActualKey : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="LogIncorrectTypeError" Id="{0c5dc91e-aa7c-0293-1c6f-54c1bf5b45a5}">
+      <Declaration><![CDATA[METHOD PUBLIC LogIncorrectTypeError
+VAR_INPUT
+	ExpectedType : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="LogInvalidKeyError" Id="{455a85bc-0e66-054a-3010-56ea7aca033b}">
+      <Declaration><![CDATA[METHOD PUBLIC LogInvalidKeyError
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="LogMissingKeyError" Id="{8aa1f3f4-7229-0601-0f95-4bd5ca31b91d}">
+      <Declaration><![CDATA[METHOD PUBLIC LogMissingKeyError
+VAR_INPUT
+	ExpectedKey : T_MAXSTRING;
 END_VAR
 ]]></Declaration>
     </Method>

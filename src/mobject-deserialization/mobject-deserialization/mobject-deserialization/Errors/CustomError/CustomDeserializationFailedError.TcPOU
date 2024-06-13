@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="CustomDeserializationFailedError" Id="{b04061ef-76ac-05ca-1e11-10d5668b0e84}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK CustomDeserializationFailedError EXTENDS Error
+VAR
+	_message : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{b036c537-2c6e-0df9-2dfb-c833b90901ad}" />
+    <Property Name="ErrorType" Id="{4f43225d-71e2-0bc7-06fa-455a0901bfc8}">
+      <Declaration><![CDATA[PROPERTY PUBLIC ErrorType : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{54cbb345-77c8-0a3c-09ac-a52a121f52c2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ErrorType := 'CUSTOM_DESERIALIZATION_ERROR';]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="FB_init" Id="{25ac4fc7-5843-0846-00c1-c9f44172d969}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	Message : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[this^._message := Message;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Message" Id="{99331d28-10a6-0f6d-3ef5-8726dbe51375}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Message : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{a18e5cd9-3547-07e5-25d2-11d073beba0c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Message := CONCAT('Deserialization Failed, ',_message);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>
